@@ -1,0 +1,71 @@
+.fields-list {
+  padding: 20px;
+  max-width: 1400px;
+  margin: 0 auto;
+
+}
+
+.search-form {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.search-input {
+  flex-grow: 1;
+  max-width: 600px;
+  padding: 8px 12px;
+  border: 1px solid #ccc;
+  border-radius: 20px;
+  font-size: 16px;
+}
+
+.fields-table {
+
+  border: 2px solid black;
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.fields-table th,
+.fields-table td {
+  border: 3px solid black;
+  padding: 12px;
+  text-align: left;
+  border-bottom: 1px solid #dddddd;
+  background-color: white;
+
+}
+
+.fields-table th {
+
+  background-color: #f2f2f2;
+  font-weight: bold;
+}
+
+.fields-table tr:hover {
+  background-color: #f5f5f5;
+}
+
+.curricula-section {
+  margin-top: 40px;
+  padding: 20px;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.curricula-section h3 {
+  margin-top: 0;
+}
+
+.curricula-section ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.curricula-section li {
+  margin-bottom: 10px;
+}
