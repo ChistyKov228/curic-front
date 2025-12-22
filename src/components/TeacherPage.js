@@ -1,9 +1,8 @@
 import React from 'react';
-import { useParams, useNavigate, useLocation } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import './TeacherPage.css';
 
 function TeacherPage() {
-  const { teacherId } = useParams();
   const navigate = useNavigate();
   const location = useLocation();
   const teacher = location.state?.teacher;

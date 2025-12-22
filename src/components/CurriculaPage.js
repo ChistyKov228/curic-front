@@ -35,6 +35,31 @@ function CurriculaPage() {
     navigate('/');
   };
 
+  const handleDownload = () => {
+    fetch(`http://localhost:8080/api/curricula/${fieldId}/pdf`)
+      .then(response => {
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+        return response.blob();
+      })
+      .then(blob => {
+        const url = window.URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = `curricula_${fieldId}.pdf`;
+        document.body.appendChild(a);
+        a.click();
+        a.remove();
+        window.URL.revokeObjectURL(url);
+      })
+      .catch(error => {
+        console.error('Download failed:', error);
+      });
+  };
+
+
+
 
   if (loading) return <div>Loading...</div>;
   if (error) return <div>Error: {error}</div>;
@@ -48,6 +73,7 @@ function CurriculaPage() {
           <p style={{ fontSize: '20px', marginBottom: '10px' }}>Курс: {curricula.course}</p>
           <p style={{ fontSize: '20px', marginBottom: '10px' }}>Годы: {curricula.yearStart} - {curricula.yearEnd}</p>
           <p style={{ fontSize: '20px', marginBottom: '20px' }}>Статус: {curricula.status}</p>
+          <button onClick={handleDownload} className="download-button">Скачать учебный план</button>
           <h3 style={{ fontSize: '28px', marginBottom: '10px' }}>Направление:</h3>
           <p style={{ fontSize: '20px', marginBottom: '30px' }}>{curricula.fieldOfStudy.fieldCode} - {curricula.fieldOfStudy.fieldName}</p>
           <h3 style={{ fontSize: '28px', marginBottom: '20px' }}>Дисциплины:</h3>

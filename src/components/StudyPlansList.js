@@ -62,12 +62,11 @@ function FieldsList() {
       <table className="fields-table">
         <thead>
           <tr>
-            <th>Код</th>
-            <th>Название</th>
-            <th>Уровень</th>
+            <th>Код напрваления</th>
+            <th>Наименование напрваления</th>
+            <th>Квалификация </th>
             <th>Длительность</th>
-            <th>Профиль</th>
-            <th>Квалификация</th>
+            
           </tr>
         </thead>
         <tbody>
@@ -77,8 +76,7 @@ function FieldsList() {
               <td>{field.fieldName}</td>
               <td>{field.degreeLevel}</td>
               <td>{field.studyLength} года</td>
-              <td>{field.profileName}</td>
-              <td>{field.qualification || 'Не указана'}</td>
+              
             </tr>
           ))}
         </tbody>
