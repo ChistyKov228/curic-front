@@ -78,7 +78,6 @@ function CurriculaPage() {
   };
 
   const handleUpdateContent = () => {
-    // Prefill with values from curricula.disciplines
     if (curricula && curricula.disciplines && curricula.disciplines.length > 0) {
       const discipline = curricula.disciplines[0];
       const teacher = discipline.teachers && discipline.teachers.length > 0 ? discipline.teachers[0] : null;
@@ -92,7 +91,6 @@ function CurriculaPage() {
         hoursAssigned: teacher ? '36' : '' // default if no teacher
       });
     } else {
-      // Fallback to empty
       setUpdateForm({
         disciplineId: '',
         currentTerm: '',
@@ -272,22 +270,24 @@ function CurriculaPage() {
             <p style={{ fontSize: '20px', marginBottom: '10px' }}>Курс: {curricula.course}</p>
             <p style={{ fontSize: '20px', marginBottom: '10px' }}>Годы: {curricula.yearStart} - {curricula.yearEnd}</p>
             <p style={{ fontSize: '20px', marginBottom: '20px' }}>Статус: {curricula.status}</p>
-          <button onClick={handleDownload} className="download-button" style={{ backgroundColor: 'green', color: 'white', padding: '8px 15px', border: 'none', borderRadius: '3px', cursor: 'pointer' }}>Скачать учебный план</button>
-          {userRole === 'ADMIN' && (
-            <button onClick={handleUpdateContent} className="update-button" style={{ backgroundColor: 'blue', color: 'white', padding: '8px 15px', border: 'none', borderRadius: '3px', cursor: 'pointer', marginLeft: '10px' }}>
-              Обновить контент
-            </button>
-          )}
-          {userRole === 'ADMIN' && (
-            <button onClick={handleArchive} className="archive-button" style={{ backgroundColor: 'purple', color: 'white', padding: '8px 15px', border: 'none', borderRadius: '3px', cursor: 'pointer', marginLeft: '10px' }}>
-              {curricula.status === 'ARCHIVED' ? 'Разархивировать' : 'Архивировать'}
-            </button>
-          )}
-          {(userRole === 'ADMIN' || userRole === 'MANAGER') && (
-            <button onClick={handleDelete} className="delete-button" style={{ backgroundColor: 'red', color: 'white', padding: '8px 15px', border: 'none', borderRadius: '3px', cursor: 'pointer', marginLeft: '10px' }}>
-              Удалить учебный план
-            </button>
-          )}
+            <div style={{ display: 'flex', flexWrap: 'wrap', gap: '10px', marginBottom: '20px' }}>
+              <button onClick={handleDownload} className="download-button" style={{ backgroundColor: 'green', color: 'white', padding: '8px 15px', border: 'none', borderRadius: '3px', cursor: 'pointer' }}>Скачать учебный план</button>
+              {userRole === 'ADMIN' && (
+                <button onClick={handleUpdateContent} className="update-button" style={{ backgroundColor: 'blue', color: 'white', padding: '8px 15px', border: 'none', borderRadius: '3px', cursor: 'pointer' }}>
+                  Обновить контент
+                </button>
+              )}
+              {userRole === 'ADMIN' && (
+                <button onClick={handleArchive} className="archive-button" style={{ backgroundColor: 'purple', color: 'white', padding: '8px 15px', border: 'none', borderRadius: '3px', cursor: 'pointer' }}>
+                  {curricula.status === 'ARCHIVED' ? 'Разархивировать' : 'Архивировать'}
+                </button>
+              )}
+              {(userRole === 'ADMIN' || userRole === 'MANAGER') && (
+                <button onClick={handleDelete} className="delete-button" style={{ backgroundColor: 'red', color: 'white', padding: '8px 15px', border: 'none', borderRadius: '3px', cursor: 'pointer' }}>
+                  Удалить учебный план
+                </button>
+              )}
+            </div>
             <h3 style={{ fontSize: '28px', marginBottom: '10px' }}>Направление:</h3>
             <p style={{ fontSize: '20px', marginBottom: '30px' }}>{curricula.fieldOfStudy.fieldCode} - {curricula.fieldOfStudy.fieldName}</p>
             <h3 style={{ fontSize: '28px', marginBottom: '20px' }}>Дисциплины:</h3>
