@@ -8,6 +8,17 @@ function Header() {
   const navigate = useNavigate();
   const [role, setRole] = useState(null);
 
+  const logout = () => {
+    localStorage.removeItem('token');
+    localStorage.removeItem('username');
+    localStorage.removeItem('role');
+    localStorage.removeItem('loginUsername');
+    localStorage.removeItem('loginPassword');
+    setRole(null);
+    window.dispatchEvent(new Event('logoutChange'));
+    navigate('/');
+  };
+
   useEffect(() => {
     const checkAuth = () => {
       const token = localStorage.getItem('token');
@@ -43,12 +54,7 @@ function Header() {
   };
 
   const handleLogout = () => {
-    localStorage.removeItem('token');
-    localStorage.removeItem('username');
-    localStorage.removeItem('role');
-    setRole(null);
-    window.dispatchEvent(new Event('logoutChange'));
-    navigate('/');
+    logout();
   };
 
   return (

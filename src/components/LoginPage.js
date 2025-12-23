@@ -32,7 +32,6 @@ function LoginPage() {
         localStorage.setItem('token', data.token);
         localStorage.setItem('username', data.username);
         localStorage.setItem('role', data.role);
-        // Dispatch event to update Header
         window.dispatchEvent(new Event('authChange'));
         navigate('/');
       } else {

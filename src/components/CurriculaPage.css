@@ -35,6 +35,41 @@
   background-color: #45a049;
 }
 
+.delete-button {
+  padding: 10px 20px;
+  background-color: #f44336;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  margin-top: 10px;
+}
+
+.delete-button:hover {
+  background-color: #d32f2f;
+}
+
+.study-plans-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.study-plan-card {
+  background-color: #f9f9f9;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  width: calc(50% - 10px);
+  min-width: 300px;
+}
+
+.study-plan-card h3 {
+  margin-top: 0;
+  font-size: 24px;
+}
+
 
 
 .curricula-details {
