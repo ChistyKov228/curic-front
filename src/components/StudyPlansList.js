@@ -337,7 +337,6 @@ function FieldsList() {
           </div>
         </div>
       )}
-
     </div>
   );
 }
