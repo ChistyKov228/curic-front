@@ -54,7 +54,6 @@ function Header() {
   };
 
   const handleLogout = () => {
-
     logout();
   };
 
@@ -73,11 +72,9 @@ function Header() {
         </div>
         <div className="header-right">
           {role ? (
-            <div className="user-info">
-              <div className="user-role" onClick={handleLogout} style={{ cursor: 'pointer' }}>
-                {role}
-              </div>
-            </div>
+            <button className="header-button user-role-button" onClick={handleLogout} style={{ fontWeight: 'bold' }}>
+              {role}
+            </button>
           ) : (
             <button className="header-button auth-button" onClick={handleAuthClick}>
               <img src={vectorLogIn} alt="Login" />

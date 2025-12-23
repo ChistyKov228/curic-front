@@ -258,7 +258,7 @@ function FieldsList() {
           onChange={handleSearchChange}
           className="search-input"
         />
-        {userRole === ('ADMIN' || 'MANAGER') && (
+        {(userRole === 'ADMIN' || userRole === 'MANAGER') && (
           <button
             onClick={handleCreate}
             style={{ backgroundColor: 'green', color: 'white', padding: '8px 15px', border: 'none', borderRadius: '3px', cursor: 'pointer', marginLeft: '10px' }}
@@ -274,8 +274,7 @@ function FieldsList() {
             <th>Наименование напрваления</th>
             <th>Квалификация </th>
             <th>Длительность</th>
-            {userRole === ('ADMIN' || 'MANAGER')
-            && <th>Действия</th>}
+            {(userRole === 'ADMIN' || userRole === 'MANAGER') && <th>Действия</th>}
           </tr>
         </thead>
         <tbody>
@@ -285,7 +284,7 @@ function FieldsList() {
               <td>{field.fieldName}</td>
               <td>{field.degreeLevel}</td>
               <td>{field.studyLength} года</td>
-              {userRole === ('ADMIN' || 'MANAGER')&& (
+              {(userRole === 'ADMIN' || userRole === 'MANAGER') && (
                 <td onClick={(e) => e.stopPropagation()} style={{ textAlign: 'center' }}>
                   <button
                     onClick={() => handleEdit(field.fieldId)}
