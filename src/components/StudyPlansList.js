@@ -192,20 +192,16 @@ function FieldsList() {
     const token = localStorage.getItem('token');
 
     try {
-      // Check if there's a curricula for this field
       const curriculaResponse = await fetch(`http://localhost:8080/api/curricula/${fieldId}`);
       if (curriculaResponse.ok) {
         const curriculaData = await curriculaResponse.json();
         if (curriculaData.status === 'success') {
           const curricula = curriculaData.data;
           const planId = curricula.studyPlanId;
-          // Map disciplines to the required format for blocks
           const blocks = curricula.disciplines.map(discipline => ({
             disciplineId: discipline.disciplineId,
             term: discipline.term
           }));
-
-          // Delete content first
           const contentResponse = await fetch(`http://localhost:8080/api/admin/fields/${fieldId}/study-plans/${planId}/content`, {
             method: 'DELETE',
             headers: {
@@ -218,8 +214,6 @@ function FieldsList() {
             alert('Ошибка при удалении контента учебного плана');
             return;
           }
-
-          // Then delete the plan
           const planResponse = await fetch(`http://localhost:8080/api/admin/fields/${fieldId}/study-plans/${planId}`, {
             method: 'DELETE',
             headers: {
@@ -232,8 +226,6 @@ function FieldsList() {
           }
         }
       }
-
-      // Now delete the field
       const fieldResponse = await fetch(`http://localhost:8080/api/admin/fields/${fieldId}`, {
         method: 'DELETE',
         headers: {
@@ -242,7 +234,6 @@ function FieldsList() {
       });
 
       if (fieldResponse.ok) {
-        // Refresh the list
         setFields(fields.filter(field => field.fieldId !== fieldId));
         alert('Направление удалено');
       } else {
@@ -267,7 +258,7 @@ function FieldsList() {
           onChange={handleSearchChange}
           className="search-input"
         />
-        {userRole === 'ADMIN' && (
+        {userRole === ('ADMIN' || 'MANAGER') && (
           <button
             onClick={handleCreate}
             style={{ backgroundColor: 'green', color: 'white', padding: '8px 15px', border: 'none', borderRadius: '3px', cursor: 'pointer', marginLeft: '10px' }}
@@ -283,7 +274,8 @@ function FieldsList() {
             <th>Наименование напрваления</th>
             <th>Квалификация </th>
             <th>Длительность</th>
-            {userRole === 'ADMIN' && <th>Действия</th>}
+            {userRole === ('ADMIN' || 'MANAGER')
+            && <th>Действия</th>}
           </tr>
         </thead>
         <tbody>
@@ -293,7 +285,7 @@ function FieldsList() {
               <td>{field.fieldName}</td>
               <td>{field.degreeLevel}</td>
               <td>{field.studyLength} года</td>
-              {userRole === 'ADMIN' && (
+              {userRole === ('ADMIN' || 'MANAGER')&& (
                 <td onClick={(e) => e.stopPropagation()} style={{ textAlign: 'center' }}>
                   <button
                     onClick={() => handleEdit(field.fieldId)}
