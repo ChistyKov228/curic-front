@@ -273,6 +273,7 @@ function FieldsList() {
             <th>Код напрваления</th>
             <th>Наименование напрваления</th>
             <th>Квалификация </th>
+            <th>Профиль</th>
             <th>Длительность</th>
             {(userRole === 'ADMIN' || userRole === 'MANAGER') && <th>Действия</th>}
           </tr>
@@ -283,6 +284,7 @@ function FieldsList() {
               <td>{field.fieldCode}</td>
               <td>{field.fieldName}</td>
               <td>{field.degreeLevel}</td>
+              <td>{field.profileName}</td>
               <td>{field.studyLength} года</td>
               {(userRole === 'ADMIN' || userRole === 'MANAGER') && (
                 <td onClick={(e) => e.stopPropagation()} style={{ textAlign: 'center' }}>
